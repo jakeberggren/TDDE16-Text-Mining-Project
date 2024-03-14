@@ -12,6 +12,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{microtype}
 \usepackage{inconsolata}
+\usepackage[hang,flushmargin]{footmisc} % removes indent for footnotes
 
 % If the title and author information does not fit 
 % in the area allocated, uncomment the following
@@ -44,9 +45,11 @@
 \input{report/texfiles/conclusion}
 
 % BIBLIOGRAPHY
-\bibliography{references/anthology, 
-              references/custom, 
-              references/references}
+\bibliography{
+    references/anthology, 
+    references/custom, 
+    references/references
+}
 
 % APPENDIX
 \appendix
