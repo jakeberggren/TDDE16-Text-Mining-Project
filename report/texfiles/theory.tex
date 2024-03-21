@@ -1,4 +1,41 @@
 \section{Theory}
 \label{sec:theory}
 
-Present relevant theoretical background, with a focus on those concepts and methods that were not covered in the course.
+%Present relevant theoretical background, with a focus on those concepts and methods that were not covered in the course.
+
+The theory chapter will present a relevant theoretical background to the project, with a focus on the concepts which was not covered in the course. Therefore, the theory behind the statistical ML techniques will be kept short, since it was largely covered in the course.
+
+\subsection{Statistical Machine Learning}
+
+Statistical machine learning is no different than it sounds like, and can be described as learning by data with the use of statistical algorithms. While there are others, the learning is often divided into two categories, \textit{supervised} and \textit{unsupervised}, where supervised learning is characterized by the presence of an outcome variable, whereas in unsupervised learning such a variable is not present \cite{Hastie2009}. The theory behind the supervised classifier algorithms used in this project will be briefly described below.
+
+\subsubsection{Multinomial Naive Bayes}
+
+Naive bayes (NB) classifier is based on Bayes Theorem with the assumption that the features are conditionally independent. The multinomial NB classifier computes the probability of a document $d$ belonging to class $c$ by the probability of term $t_k$ occurring in class $c$ (see equation \ref{eq:naivebayes}) \cite{Manning2008}. Manning et al. described this as the amount of evidence $t_k$ contributes to $c$ being the correct classification.
+
+\begin{equation}
+\label{eq:naivebayes}
+P(c|d) \propto P(c) \prod_{1 \leq k \leq n_d} P(t_k|c)
+\end{equation}
+
+\subsubsection{Support Vector Machine}
+
+A Support Vector Machine (SVM) is based on finding the hyperplane or decision boundary that best separates the classes in the feature space. This plane is maximally far away from any data point, a distance referred to as the \textit{margin}. The position and orientation of the hyperplane is ultimately decided by the subset of data closest to the decision boundary. These points are called the \textit{support vectors} \cite{Manning2008}. 
+
+\subsubsection{Random Forest}
+
+
+
+\subsubsection{Gradient Boosting}
+
+\subsection{Large Language Models}
+
+
+%LLMs
+
+%Transfer Learning
+
+%Zero-shot
+%One-shot
+%Few-shot
+%Embeddings and similarity measures
