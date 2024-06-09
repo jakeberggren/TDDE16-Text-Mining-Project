@@ -1,4 +1,29 @@
 \section{Discussion}
 \label{sec:discussion}
 
-Analyse your results. Discuss the limitations of your work. Compare your study to related work, such as internet materials or scientific articles.
+% Analyse your results. Discuss the limitations of your work. Compare your study to related work, such as internet materials or scientific articles.
+
+The following chapter will analyze the results and discuss the possibilities and limitations of both approaches in the context of classifying medical abstracts. Moreover, the study will be compared to related work on medical text classification.
+
+\subsection{Results analysis}
+\label{subsec:res-analysis}
+
+Results of the study are quite interesting and really show the potential for the use of LLMs in the task of text classification and how it can assist doctors and medical researchers. While not drastically outperforming the statistical methods, the results show that simply zero-shot prompting the model can achieve performance on par with most of the statistical approaches, and by including a few examples by few-shot prompting, the model slightly outperforms. What is very impressive here, is that this uses a highly generalized model, only pre-trained on vast amounts of data, which means that one could use this solution "out of the box" with no, or only a few labeled examples. In contrast, the statistical methods used in this study needs labeled data for the training process. An interesting future work could thus be to also fine-tune the large language model on the labeled medical abstract training data to see how this could affect and possible increase the performance further. 
+
+A clear trend that can be seen, is that the category \textit{general pathological conditions} is the most difficult for almost all models and methods to classify. On the statistical side, gradient boosting handled this category the best, and slight improvement could be seen by removing applying stop-word removal. On the LLM side, a very clear improvement could be seen by applying one and few-shot prompting, compared to zero-shot prompting. Seeing this is such a clear trend, it is possible that the methods used, for example undersampling to the minority class, yields these results. Undersampling might lead to a loss of crucial information, making it more difficult for the statistical models to find good decision boundaries. However, seeing the same trend is seen on the zero-shot prompted LLM (which does not make use of the training data at all), it could also be the case, that the abstracts on general pathological conditions, do not have as clear linguistic features, making them harder to separate and tell apart from other abstracts.
+
+An important thing to consider, is whether achieved accuracy is sufficient. An accuracy of about 60\% means that many abstracts will be incorrectly classified. This could pose a problem dependent on use, possibly causing for example a doctor to miss an important abstract needed for a patient or for research. However, using these approaches as a helping tool, knowing that it will not categorize everything correctly can still be of great use, saving time as doctors will know what abstracts to look at first. A great addition to such a tool could be presenting a percentage point as to how "confident" the model is in it classification, and what other possible classes are considered.
+
+\subsection{Limitations}
+\label{subsec:discussion-limitations}
+
+As stated above, one of benefits of the LLM approach is that the solution works "out of the box", and almost no labeled data is needed. However, this impressive performance comes at the cost of far more computational cost and time. Although not presented as part of the results, the runtime of the LLM based methods was far longer than the statistical methods, as well as computed in the cloud as compared to on a consumer laptop. This impacts the actual usefulness of the LLM approach, especially when the results presented here do not show any significant benefit in regard to classification performance. Also taking into account the amount of medical abstracts and that speed and computational costs are important factors, this makes the LLM approach less and less viable. However, mind that the these experiments were done on GPT-3.5 Turbo, which is not the currently most powerful model of this type. With the current rate of improvement, LLMs will likely outperform statistical methods on text classification, making them an eligible option. 
+
+A methodological limitation of this work is that it would have been interesting to compare the LLM based approach to \textit{unsupervised} statistical approaches, rather than \textit{supervised} ones. This could give further insights into what methods perform the best when labeled data is not available at all, rather than it being a separate benefit of the LLM approach. This will however be left as future work on the area.
+
+\subsection{Related work}
+\label{subsec:res-related-work}
+
+Dernoncourt et al. presents PubMed 200k RCT (available on GitHub\footnote{https://github.com/Franck-Dernoncourt/pubmed-rct}), a dataset for sequential sentence classification in medical abstracts, focusing on randomized controlled trials (RCTs) \cite{dernoncourt2017pubmed}. Similar to the work presented in this study, Dernoncourt et al. research aims to develop better tools for doctors and medical researchers to more quickly and effectively pick out important journals and papers from a large amount of abstracts. 
+
+Authors found, that many medical abstracts are unstructured, meaning they are not divided into semantic headings, such as "objective" and "results". They therefore focus their efforts on creating a dataset where each sentence is given a specific label, then classifying the different sentences (they call this \textit{sequential sentence classification}), making it easier for doctors and researchers to locate the desired information. Authors also present several baseline classifiers for future researchers to build upon. 

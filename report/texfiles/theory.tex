@@ -3,7 +3,7 @@
 
 %Present relevant theoretical background, with a focus on those concepts and methods that were not covered in the course.
 
-The theory chapter will present a relevant theoretical background to the project, with a focus on the concepts which was not covered in the course. Therefore, the theory behind the statistical ML techniques will be kept short, since it was largely covered in the course.
+The theory chapter will present a relevant theoretical background to the project, explaining the main concepts employed in the method.
 
 \subsection{Statistical Machine Learning}
 
@@ -11,7 +11,7 @@ Statistical machine learning is no different than it sounds like, and can be des
 
 \subsubsection{Multinomial Naive Bayes}
 
-Naive bayes (NB) classifier is based on Bayes Theorem with the assumption that the features are conditionally independent. The multinomial NB classifier computes the probability of a document $d$ belonging to class $c$ by the probability of term $t_k$ occurring in class $c$ (see equation \ref{eq:naivebayes}) \cite{Manning2008}. Manning et al. described this as the amount of evidence $t_k$ contributes to $c$ being the correct classification.
+Naive Bayes (NB) classifier is based on Bayes Theorem with the assumption that the features are conditionally independent. The multinomial NB classifier computes the probability of a document $d$ belonging to class $c$ by the probability of term $t_k$ occurring in class $c$ (see equation \ref{eq:naivebayes}) \cite{Manning2008}. Manning et al. described this as the amount of evidence $t_k$ contributes to $c$ being the correct classification.
 
 \begin{equation}
 \label{eq:naivebayes}
@@ -24,18 +24,42 @@ A Support Vector Machine (SVM) is based on finding the hyperplane or decision bo
 
 \subsubsection{Random Forest}
 
-
+Random forest is a decision tree based technique. Main ideas include combining several trees, where each tree is trained on random subsets of the data (also referred to as bagging). For classification, the class selected by most trees is then chosen (i.e., by majority voting) \cite{smlbook}.
 
 \subsubsection{Gradient Boosting}
 
+Boosting can be described as learning several weak classifiers in sequence, where each classifier attempts to correct the errors made by its predecessors. Often, decision trees are used as the weak classifiers. In contrast to other boosting based techniques, gradient boosting uses gradient descent to minimize the loss function, where each added tree is fitted to the residual errors of the previous trees, reducing the overall error \cite{smlbook}.
+
 \subsection{Large Language Models}
 
+Language modeling can be considered as a statistical model where the next word in a sequence of words can be predicted as a conditional probability of previous words, as described by Bengio et al. in equation \ref{eq:LLMs}:
 
-%LLMs
+\begin{equation}
+\label{eq:LLMs}
+\hat{P}(w_1^T) = \prod_{t=1}^{T} \hat{P}(w_t | w_1^{t-1})
+\end{equation}
 
-%Transfer Learning
+where $w_t$ is the t:th word \cite{Bengio2003AModel}. Radford et al. later showed that training a language model on large datasets could yield more general task solving capabilities across a multitude of Natural Language Processing (NLP) domains \cite{Radford2019LanguageMA}. Authors then introduce GPT-2, a model based on the transformer architecture, introduced by Vaswani et al. \cite{Vaswani2017AttentionNeed}. Radford et al. further explain that through a process known as \textit{“transfer learning”}, these models can learn to solve downstream tasks without needing task-specific data, leveraging the knowledge gained from their training data, also referred to as \textit{“zero-shot learning”} \cite{Radford2019LanguageMA}.
 
-%Zero-shot
-%One-shot
-%Few-shot
-%Embeddings and similarity measures
+\subsubsection{Prompt Engineering}
+
+Large Language Models are often instructed or \textit{“prompted”} by natural language that describes the task to be solved. Constructing effective prompts is often referred to as \textit{“prompt engineering”}, where common techniques include zero-, one-, and few-shot prompting. While zero-shot learning leverages pre-existing knowledge from the training data (as explained above), one- and few-shot learning relies on including one or few examples, demonstrating how the task is to be solved \cite{brown2020language}. As shown by Brown et al. utilizing one- or few-shot prompting techniques can greatly improve the model's performance on a given task \cite{brown2020language}.
+
+\subsection{Additional Concepts}
+
+This subsection aims to describe additional concepts used in this study, beginning with introducing embeddings and similarity measures.
+
+\subsubsection{Embeddings and Similarity Measures}
+
+In NLP, an \textit{embedding} refers to a vector representation of text. This can be either words, sentences or entire bodies of text, with the idea that embeddings with high similarity will be represented close together in vector space \cite{Jurafsky2000SpeechAL}. Measuring the similarity is often done using \textit{“cosine similarity”}, the cosine of the angle between the two embeddings in vector space. As explained by Jurafsky et al. cosine similarity can be defined as in equation \ref{eq:cosine-similarity} \cite{Jurafsky2000SpeechAL}. 
+
+\begin{equation}
+\label{eq:cosine-similarity}
+cosine(v,w) = \frac{v \cdot w}{|{v}||{w}|} = \frac{\sum_{i=1}^{N}v_iw_i}{\sqrt{\sum_{i=1}^{N}v_i^2}\sqrt{\sum_{i=1}^{N}w_i^2}}
+\end{equation}
+
+\subsubsection{Undersampling}
+
+Class imbalance is a common problem in machine learning, meaning that there is an imbalance in the number of samples from each class. A common technique to counteract the imbalance problem is using \textit{random undersampling}. This involves randomly reducing the number of instances or samples from the majority class, making the dataset more balanced \cite{MohammedUndersampling}. 
+
+
